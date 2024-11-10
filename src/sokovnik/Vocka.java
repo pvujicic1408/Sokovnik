@@ -29,18 +29,42 @@ java.util.*;
 
 class Vocka {
 	private String nazivVocke;
-	private int tezinaVocke;
+	private double tezinaVocke;
 	private boolean isTrula;
 	
-	private String getNazivVocke() {
+	public Vocka(String nazivVocke, double tezinaVocke, boolean isTrula) {
+		setNazivVocke(nazivVocke);
+		setTezinaVocke(tezinaVocke);
+		this.isTrula=isTrula;
+	}
+	
+	public void setNazivVocke(String nazivVocke) {
+        if (nazivVocke.matches("[a-zA-Z]+")) {
+            this.nazivVocke = nazivVocke;
+        } else {
+            System.out.println("Nevalidan unos. Pokusajte ponovo.");
+            System.exit(0);
+        }
+    }
+	
+	 public void setTezinaVocke(double tezinaVocke) {
+	        if (tezinaVocke >= 100 && tezinaVocke <= 300) {
+	            this.tezinaVocke = tezinaVocke;
+	        } else {
+	        	System.out.println("Težina voćke mora biti između 100g i 300g.");
+	            System.exit(0);
+	        }
+	    }
+	
+	public String getNazivVocke() {
 		return nazivVocke;
 	}
 	
-	private int getTezinaVocke() {
+	public double getTezinaVocke() {
 		return tezinaVocke;
 	}
 	
-	private boolean getIsTrula() {
+	public boolean getIsTrula() {
 		return isTrula;
 	}
 }
