@@ -5,14 +5,14 @@ java.util.*;
 
 public class PosudaZaVoce {
 	public static final double KAPACITET_POSUDE=3000;
-	int trenutnaTezinaVoca = 0;
-	private List<Vocka> vockeUPosudi;
+	static int trenutnaTezinaVoca = 0;
+	static private List<Vocka> vockeUPosudi;
 	
 	public PosudaZaVoce() {
 		vockeUPosudi = new ArrayList();
 	}
 	
-	public void dodajVocku(Vocka vocka) throws PremasenKapacitetException {
+	public static void dodajVocku(Vocka vocka) throws PremasenKapacitetException {
 		if(trenutnaTezinaVoca + vocka.getTezinaVocke() > KAPACITET_POSUDE) {
 			throw new PremasenKapacitetException("Kapacitet posude za voce je premasen!");
 		}
@@ -25,15 +25,23 @@ public class PosudaZaVoce {
 		}
 	}
 	
-	public List<Vocka> getVockeUPosudi() {
+	public static void prikaziStanjePosude(List<Vocka> vocke) {
+		System.out.println("Trenutno stanje u posudi: ");
+		for(Vocka vocka: vocke) {
+			System.out.println(vocka.getNazivVocke() + " sorte " + (vocka instanceof Jabuka ? ((Jabuka) vocka).getSorta() : "N/A") + " od " + vocka.getTezinaVocke() + " grama.");
+		}
+		
+	}
+	
+	public static List<Vocka> getVockeUPosudi() {
 		return vockeUPosudi;
 	}
 	
-	public int getTrenutnaTezinaVoca() {
+	public static int getTrenutnaTezinaVoca() {
 		return trenutnaTezinaVoca;
 	}
 	
-	public void isprazniPosudu() {
+	public static void isprazniPosudu() {
 		vockeUPosudi.clear();
 		trenutnaTezinaVoca = 0;
 	}
