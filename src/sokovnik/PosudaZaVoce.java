@@ -4,8 +4,8 @@ import
 java.util.*;
 
 public class PosudaZaVoce {
-	private static final double KAPACITET_POSUDE=3000;
-	double trenutnaTezinaVoca = 0;
+	public static final double KAPACITET_POSUDE=3000;
+	int trenutnaTezinaVoca = 0;
 	private List<Vocka> vockeUPosudi;
 	
 	public PosudaZaVoce() {
@@ -19,8 +19,9 @@ public class PosudaZaVoce {
 		if(!vocka.getIsTrula()) {
 			vockeUPosudi.add(vocka);
 			trenutnaTezinaVoca += vocka.getTezinaVocke();
+			System.out.println("Ubacena vocka: " + vocka.getNazivVocke() + " "  + vocka.getTezinaVocke() + " g");
 		}else {
-			System.out.println("Trule vocke nisu dozvoljene!");
+			System.out.println("Trule vocke se ne mogu ubaciti u posudu!");
 		}
 	}
 	
@@ -28,7 +29,7 @@ public class PosudaZaVoce {
 		return vockeUPosudi;
 	}
 	
-	public double getTrenutnaTezinaVoca() {
+	public int getTrenutnaTezinaVoca() {
 		return trenutnaTezinaVoca;
 	}
 	

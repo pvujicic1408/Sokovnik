@@ -29,10 +29,10 @@ java.util.*;
 
 class Vocka {
 	private String nazivVocke;
-	private double tezinaVocke;
+	private int tezinaVocke;
 	private boolean isTrula;
 	
-	public Vocka(String nazivVocke, double tezinaVocke, boolean isTrula) {
+	public Vocka(String nazivVocke, int tezinaVocke, boolean isTrula) {
 		setNazivVocke(nazivVocke);
 		setTezinaVocke(tezinaVocke);
 		this.isTrula=isTrula;
@@ -47,7 +47,7 @@ class Vocka {
         }
     }
 	
-	 public void setTezinaVocke(double tezinaVocke) {
+	 public void setTezinaVocke(int tezinaVocke) {
 	        if (tezinaVocke >= 100 && tezinaVocke <= 300) {
 	            this.tezinaVocke = tezinaVocke;
 	        } else {
@@ -60,7 +60,7 @@ class Vocka {
 		return nazivVocke;
 	}
 	
-	public double getTezinaVocke() {
+	public int getTezinaVocke() {
 		return tezinaVocke;
 	}
 	
