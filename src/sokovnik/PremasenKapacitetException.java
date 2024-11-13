@@ -1,8 +1,10 @@
 package sokovnik;
 
 public class PremasenKapacitetException extends Exception {
-	public PremasenKapacitetException(String poruka) {
-		super(poruka);
+	public PremasenKapacitetException() {
+		System.out.println("Pokvaren sokovnik zbog prevelike kolicine voca!");
+		System.exit(0);
+		
 	}
 
 }

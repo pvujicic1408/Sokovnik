@@ -9,13 +9,18 @@ public class Main {
 		Random rand = new Random();
 		double verovatnocaCedjenja = 0.30;
         double verovatnocaUbacivanja = 0.70;
+        
+        System.out.println("Kapacitet posude za voce je: " + PosudaZaVoce.getKapacitetPosude() + " g");
 		
 		for(int i = 0; i < 100; i++) {
 			System.out.println("Akcija " + (i+1) + ":");
 			double akcija = rand.nextDouble();
-			if(akcija < verovatnocaCedjenja && sokovnik.posuda.getVockeUPosudi().size()!=0 || sokovnik.posuda.getTrenutnaTezinaVoca() > sokovnik.posuda.KAPACITET_POSUDE) {
-				System.out.println("Cedjenje...");
-				sokovnik.cediljka.iscedi(sokovnik.posuda);
+			if(akcija < verovatnocaCedjenja && sokovnik.posuda.getVockeUPosudi().size()!=0) {
+				try {
+					sokovnik.proveraKapacitetaSokovnika();
+				} catch (PremasenKapacitetException e) {
+					System.exit(0);
+				}
 			} else {
 				System.out.println("Ubacivanje voca u posudu...");
 				konstruisiVocku();
@@ -39,13 +44,8 @@ public class Main {
 				break;
 		}	
 		
-		try {
-			sokovnik.PosudaZaVoce.dodajVocku(vocka);
-			sokovnik.PosudaZaVoce.prikaziStanjePosude(sokovnik.PosudaZaVoce.getVockeUPosudi());
-			System.out.println("Trenutna tezina voca u posudi je: " + sokovnik.PosudaZaVoce.trenutnaTezinaVoca + " g.");
-		} catch (PremasenKapacitetException e) {
-			System.out.println(e.getMessage());
+		sokovnik.PosudaZaVoce.dodajVocku(vocka);
+		sokovnik.PosudaZaVoce.prikaziStanjePosude(sokovnik.PosudaZaVoce.getVockeUPosudi());
+		System.out.println("Trenutna tezina voca u posudi je: " + sokovnik.PosudaZaVoce.trenutnaTezinaVoca + " g.");
 		}
 	}
-
-}

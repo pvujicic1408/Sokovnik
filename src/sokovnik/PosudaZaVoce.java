@@ -4,26 +4,29 @@ import
 java.util.*;
 
 public class PosudaZaVoce {
-	public static final double KAPACITET_POSUDE=3000;
+	public static int kapacitetPosude;
 	static int trenutnaTezinaVoca = 0;
 	static private List<Vocka> vockeUPosudi;
+	Random rand;
 	
 	public PosudaZaVoce() {
+		rand = new Random();
 		vockeUPosudi = new ArrayList();
+		kapacitetPosude = 600 + rand.nextInt(100); 
 	}
 	
-	public static void dodajVocku(Vocka vocka) throws PremasenKapacitetException {
-		if(trenutnaTezinaVoca + vocka.getTezinaVocke() > KAPACITET_POSUDE) {
-			throw new PremasenKapacitetException("Kapacitet posude za voce je premasen!");
-		}
-		if(!vocka.getIsTrula()) {
+	public static void dodajVocku(Vocka vocka) {
+		 if(trenutnaTezinaVoca + vocka.getTezinaVocke() > kapacitetPosude) {
+			 System.out.println("Nema mesta za vocku: " + vocka.getNazivVocke() + " tezine " + vocka.getTezinaVocke() + " g. Sledeca akcija...");
+		 } else if(!vocka.getIsTrula()) {
 			vockeUPosudi.add(vocka);
 			trenutnaTezinaVoca += vocka.getTezinaVocke();
 			System.out.println("Ubacena vocka: " + vocka.getNazivVocke() + " "  + vocka.getTezinaVocke() + " g");
-		}else {
+		 } else {
 			System.out.println("Trule vocke se ne mogu ubaciti u posudu!");
-		}
+		 }
 	}
+		 
 	
 	public static void prikaziStanjePosude(List<Vocka> vocke) {
 		System.out.println("Trenutno stanje u posudi: ");
@@ -39,6 +42,10 @@ public class PosudaZaVoce {
 	
 	public static int getTrenutnaTezinaVoca() {
 		return trenutnaTezinaVoca;
+	}
+	
+	public static int getKapacitetPosude() {
+		return kapacitetPosude;
 	}
 	
 	public static void isprazniPosudu() {
