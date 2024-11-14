@@ -7,8 +7,8 @@ public class Main {
 	public static void main(String[] args) {
 		Sokovnik sokovnik = new Sokovnik();
 		Random rand = new Random();
-		double verovatnocaCedjenja = 0.30;
-        double verovatnocaUbacivanja = 0.70;
+		final double verovatnocaCedjenja = 0.30;
+        final double verovatnocaUbacivanja = 0.70;
         
         System.out.println("Kapacitet posude za voce je: " + PosudaZaVoce.getKapacitetPosude() + " g");
 		
@@ -18,9 +18,7 @@ public class Main {
 			if(akcija < verovatnocaCedjenja && sokovnik.posuda.getVockeUPosudi().size()!=0) {
 				try {
 					sokovnik.proveraKapacitetaSokovnika();
-				} catch (PremasenKapacitetException e) {
-					System.exit(0);
-				}
+			    } catch (PremasenKapacitetException e) {}
 			} else {
 				System.out.println("Ubacivanje voca u posudu...");
 				konstruisiVocku();

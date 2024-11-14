@@ -21,7 +21,7 @@ public class Cediljka {
 		
 		System.out.println("Iscedjeno " + String.format("%.1f",kolicinaSokaOdJednogCedjenja) + " g soka.");
 		sokovnik.PosudaZaVoce.isprazniPosudu();
-	}
+	} 
 	
 	public double getUkupnoSoka() {
 		return ukupnoSoka;

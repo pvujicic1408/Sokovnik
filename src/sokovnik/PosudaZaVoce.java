@@ -12,7 +12,7 @@ public class PosudaZaVoce {
 	public PosudaZaVoce() {
 		rand = new Random();
 		vockeUPosudi = new ArrayList();
-		kapacitetPosude = 600 + rand.nextInt(100); 
+		kapacitetPosude = 2000 + rand.nextInt(3000); 
 	}
 	
 	public static void dodajVocku(Vocka vocka) {
