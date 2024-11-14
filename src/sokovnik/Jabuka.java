@@ -20,5 +20,4 @@ public class Jabuka extends Vocka {
 	public String getSorta() {
         return sortaJabuke;
     }
-
 }

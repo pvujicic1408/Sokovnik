@@ -14,7 +14,7 @@ public class Sokovnik {
 	}
 	
 	public void proveraKapacitetaSokovnika() throws PremasenKapacitetException {
-		if(sokovnik.PosudaZaVoce.getTrenutnaTezinaVoca() > KAPACITET_SOKOVNIKA) {
+		if(posuda.getTrenutnaTezinaVoca() > KAPACITET_SOKOVNIKA) {
 			throw new PremasenKapacitetException();
 		} else cediljka.iscedi(posuda.getVockeUPosudi());
 	}

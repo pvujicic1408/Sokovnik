@@ -32,7 +32,7 @@ public class Main {
 	
 	public static void konstruisiVocku() {
 		Random rand = new Random();
-		int randomIndex = rand.nextInt(VrstaVoca.values().length) + 1;
+		int randomIndex = rand.nextInt(VrstaVoca.values().length) + 1 ;
 		VrstaVoca vrsta = VrstaVoca.izOpcije(randomIndex);
 		Vocka vocka = null;
 		
@@ -44,6 +44,6 @@ public class Main {
 		
 		sokovnik.PosudaZaVoce.dodajVocku(vocka);
 		sokovnik.PosudaZaVoce.prikaziStanjePosude(sokovnik.PosudaZaVoce.getVockeUPosudi());
-		System.out.println("Trenutna tezina voca u posudi je: " + sokovnik.PosudaZaVoce.trenutnaTezinaVoca + " g.");
+		System.out.println("Trenutna tezina voca u posudi je: " + sokovnik.PosudaZaVoce.getTrenutnaTezinaVoca() + " g.");
 		}
 	}

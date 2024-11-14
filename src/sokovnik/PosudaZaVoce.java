@@ -4,9 +4,9 @@ import
 java.util.*;
 
 public class PosudaZaVoce {
-	public static int kapacitetPosude;
-	static int trenutnaTezinaVoca = 0;
-	static private List<Vocka> vockeUPosudi;
+	private static int kapacitetPosude;
+	private static int trenutnaTezinaVoca = 0;
+	private static List<Vocka> vockeUPosudi;
 	Random rand;
 	
 	public PosudaZaVoce() {
