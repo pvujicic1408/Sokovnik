@@ -4,20 +4,20 @@ import
 java.util.*;
 
 public class Jabuka extends Vocka {
-	private String sortaJabuke;
+	private String sorta;
+	Random rand = new Random();
 	
-	public Jabuka(String nazivVocke, int tezinaVocke, boolean isTrula) {
-		super(nazivVocke, tezinaVocke, isTrula);
-		setSortaJabuke();
+	public Jabuka(String naziv, int tezina, boolean trula) {
+		super(naziv, tezina, trula);
+		setSorta();
 	}
 	
-	public void setSortaJabuke() {
+	public void setSorta() {
 		String[] sorte = {"Zlatni delises", "Crveni delises", "Greni smit"};
-		Random rand = new Random();
-        this.sortaJabuke=  sorte[rand.nextInt(sorte.length)];
+        this.sorta=  sorte[rand.nextInt(sorte.length)];
 	}
 	
 	public String getSorta() {
-        return sortaJabuke;
+        return sorta;
     }
 }

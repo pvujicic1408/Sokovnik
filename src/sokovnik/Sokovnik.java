@@ -4,9 +4,9 @@ import
 java.util.*;
 
 public class Sokovnik {
-	public PosudaZaVoce posuda;
-	public Cediljka cediljka;
-	public final int KAPACITET_SOKOVNIKA = 3000;
+	private PosudaZaVoce posuda;
+	private Cediljka cediljka;
+	private final int KAPACITET_SOKOVNIKA = 3000;
 	
 	public Sokovnik() {
 		posuda = new PosudaZaVoce();
@@ -17,6 +17,10 @@ public class Sokovnik {
 		if(posuda.getTrenutnaTezinaVoca() > KAPACITET_SOKOVNIKA) {
 			throw new PremasenKapacitetException();
 		} else cediljka.iscedi(posuda.getVockeUPosudi());
+	}
+	
+	public int getKapacitetPosude() {
+		return posuda.getKapacitetPosude();
 	}
 }
 

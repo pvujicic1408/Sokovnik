@@ -4,21 +4,15 @@ import
 java.util.*;
 
 public class Cediljka {
-	private static double ukupnoSoka;
+	private final double KOEFICIJENT_ZA_KOLICINU_ISCEDJENOG_SOKA_IZ_JEDNE_VOCKE = 0.4
+	private static double ukupnoSoka = 0;
 	
-	public Cediljka() {
-		ukupnoSoka = 0;
-	}
-	
-	public static void iscedi(List<Vocka> vockeUPosudi) {
-		
+	public void iscedi(List<Vocka> vockeUPosudi) {
 		double kolicinaSokaOdJednogCedjenja = 0;
-		
 		for(Vocka vocka : vockeUPosudi) {
-			ukupnoSoka = ukupnoSoka + vocka.getTezinaVocke() * 0.4;
-			kolicinaSokaOdJednogCedjenja += vocka.getTezinaVocke() * 0.4;
+			ukupnoSoka += vocka.getTezina() * KOEFICIJENT_ZA_KOLICINU_ISCEDJENOG_SOKA_IZ_JEDNE_VOCKE;
+			kolicinaSokaOdJednogCedjenja += vocka.getTezina() * KOEFICIJENT_ZA_KOLICINU_ISCEDJENOG_SOKA_IZ_JEDNE_VOCKE;
 		}
-		
 		System.out.println("Iscedjeno " + String.format("%.1f",kolicinaSokaOdJednogCedjenja) + " g soka.");
 		sokovnik.PosudaZaVoce.isprazniPosudu();
 	} 

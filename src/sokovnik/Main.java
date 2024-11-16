@@ -5,12 +5,14 @@ java.util.*;
 
 public class Main {
 	public static void main(String[] args) {
-		Sokovnik sokovnik = new Sokovnik();
-		Random rand = new Random();
 		final double verovatnocaCedjenja = 0.30;
         final double verovatnocaUbacivanja = 0.70;
+        final int BROJ_AKCIJA_SOKOVNIKA = 100;
+		
+		Sokovnik sokovnik = new Sokovnik();
+		Random rand = new Random();
         
-        System.out.println("Kapacitet posude za voce je: " + PosudaZaVoce.getKapacitetPosude() + " g");
+        System.out.println("Kapacitet posude za voce je: " + sokovnik.getKapacitetPosude() + " g");
 		
 		for(int i = 0; i < 100; i++) {
 			System.out.println("Akcija " + (i+1) + ":");

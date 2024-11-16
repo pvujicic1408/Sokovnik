@@ -21,50 +21,49 @@ verovatnoćom 30%, a dodavanje jabuke sa verovatnoćom od 70%.
 Ukoliko se desi da se kapacitet sokovnika premaši, potrebno je baciti PremasenKapacitetException i 
 prekinuti izvršavanje programa.*/
 
-
 package sokovnik;
 
 import
 java.util.*;
 
 class Vocka {
-	private String nazivVocke;
-	private int tezinaVocke;
-	private boolean isTrula;
+	private String naziv;
+	private int tezina;
+	private boolean trula;
 	
-	public Vocka(String nazivVocke, int tezinaVocke, boolean isTrula) {
-		setNazivVocke(nazivVocke);
-		setTezinaVocke(tezinaVocke);
-		this.isTrula=isTrula;
+	public Vocka(String naziv, int tezina, boolean trula) {
+		setNaziv(naziv);
+		setTezina(tezina);
+		this.trula=trula;
 	}
 	
-	public void setNazivVocke(String nazivVocke) {
-        if (nazivVocke.matches("[a-zA-Z]+")) {
-            this.nazivVocke = nazivVocke;
+	public void setNaziv(String naziv) {
+        if (naziv.matches("[a-zA-Z]+")) {
+            this.naziv = naziv;
         } else {
             System.out.println("Nevalidan unos. Pokusajte ponovo.");
             System.exit(0);
         }
     }
 	
-	 public void setTezinaVocke(int tezinaVocke) {
-	        if (tezinaVocke >= 100 && tezinaVocke <= 300) {
-	            this.tezinaVocke = tezinaVocke;
+	 public void setTezina(int tezina) {
+	        if (tezina >= 100 && tezina <= 300) {
+	            this.tezina = tezina;
 	        } else {
 	        	System.out.println("Težina voćke mora biti između 100g i 300g.");
 	            System.exit(0);
 	        }
 	    }
 	
-	public String getNazivVocke() {
-		return nazivVocke;
+	public String getNaziv() {
+		return naziv;
 	}
 	
-	public int getTezinaVocke() {
-		return tezinaVocke;
+	public int getTezina() {
+		return tezina;
 	}
 	
-	public boolean getIsTrula() {
-		return isTrula;
+	public boolean getTrula() {
+		return trula;
 	}
 }

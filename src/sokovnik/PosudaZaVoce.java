@@ -4,51 +4,47 @@ import
 java.util.*;
 
 public class PosudaZaVoce {
-	private static int kapacitetPosude;
-	private static int trenutnaTezinaVoca = 0;
-	private static List<Vocka> vockeUPosudi;
-	Random rand;
+	private final int MINIMALNI_KAPACITET = 2000;
+	private final int MAKSIMALNI_KAPACITET = 5000;
+
+	Random rand = new Random();
+	private int kapacitet = MINIMALNI_KAPACITET + rand.nextInt(MAKSIMALNI_KAPACITET - MINIMALNI_KAPACITET);
+	private int trenutnaTezinaVoca = 0;
+	private List<Vocka> vockeUPosudi = new ArrayList<>();
 	
-	public PosudaZaVoce() {
-		rand = new Random();
-		vockeUPosudi = new ArrayList();
-		kapacitetPosude = 2000 + rand.nextInt(3000); 
-	}
-	
-	public static void dodajVocku(Vocka vocka) {
-		 if(trenutnaTezinaVoca + vocka.getTezinaVocke() > kapacitetPosude) {
-			 System.out.println("Nema mesta za vocku: " + vocka.getNazivVocke() + " tezine " + vocka.getTezinaVocke() + " g. Sledeca akcija...");
-		 } else if(!vocka.getIsTrula()) {
+	public void dodajVocku(Vocka vocka) {
+		 if(trenutnaTezinaVoca + vocka.getTezina() > kapacitet) {
+			 System.out.println("Nema mesta za vocku: " + vocka.getNaziv() + " tezine " + vocka.getTezina() + " g. Sledeca akcija...");
+		 } else if(!vocka.getTrula()) {
 			vockeUPosudi.add(vocka);
-			trenutnaTezinaVoca += vocka.getTezinaVocke();
-			System.out.println("Ubacena vocka: " + vocka.getNazivVocke() + " "  + vocka.getTezinaVocke() + " g");
+			trenutnaTezinaVoca += vocka.getTezina();
+			System.out.println("Ubacena vocka: " + vocka.getNaziv() + " "  + vocka.getTezina() + " g");
 		 } else {
 			System.out.println("Trule vocke se ne mogu ubaciti u posudu!");
 		 }
 	}
 		 
 	
-	public static void prikaziStanjePosude(List<Vocka> vocke) {
+	public void prikaziStanjePosude(List<Vocka> vocke) {
 		System.out.println("Trenutno stanje u posudi: ");
 		for(Vocka vocka: vocke) {
-			System.out.println(vocka.getNazivVocke() + " sorte " + (vocka instanceof Jabuka ? ((Jabuka) vocka).getSorta() : "N/A") + " od " + vocka.getTezinaVocke() + " grama.");
+			System.out.println(vocka.getNaziv() + " sorte " + (vocka instanceof Jabuka ? ((Jabuka) vocka).getSorta() : "N/A") + " od " + vocka.getTezina() + " grama.");
 		}
-		
 	}
 	
-	public static List<Vocka> getVockeUPosudi() {
+	public List<Vocka> getVockeUPosudi() {
 		return vockeUPosudi;
 	}
 	
-	public static int getTrenutnaTezinaVoca() {
+	public int getTrenutnaTezinaVoca() {
 		return trenutnaTezinaVoca;
 	}
 	
-	public static int getKapacitetPosude() {
-		return kapacitetPosude;
+	public int getKapacitetPosude() {
+		return kapacitet;
 	}
 	
-	public static void isprazniPosudu() {
+	public void isprazniPosudu() {
 		vockeUPosudi.clear();
 		trenutnaTezinaVoca = 0;
 	}
