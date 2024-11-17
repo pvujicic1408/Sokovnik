@@ -10,13 +10,8 @@ public class Sokovnik {
 	private final int KAPACITET_SOKOVNIKA = 3000;
 
 	private Random rand = new Random();	
-	private PosudaZaVoce posuda;
-	private Cediljka cediljka;
-	
-	public Sokovnik() {
-		posuda = new PosudaZaVoce();
-		cediljka = new Cediljka();
-	}
+	private PosudaZaVoce posuda = new PosudaZaVoce();;
+	private Cediljka cediljka = new Cediljka();;
 	
 	public int getKapacitetSokovnika() {
 		return KAPACITET_SOKOVNIKA;
