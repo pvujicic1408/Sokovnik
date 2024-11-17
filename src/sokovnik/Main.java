@@ -14,38 +14,18 @@ public class Main {
         
         System.out.println("Kapacitet posude za voce je: " + sokovnik.getKapacitetPosude() + " g");
 		
-		for(int i = 0; i < 100; i++) {
+		for(int i = 0; i < BROJ_AKCIJA_SOKOVNIKA; i++) {
 			System.out.println("Akcija " + (i+1) + ":");
 			double akcija = rand.nextDouble();
-			if(akcija < verovatnocaCedjenja && sokovnik.posuda.getVockeUPosudi().size()!=0) {
-				try {
-					sokovnik.proveraKapacitetaSokovnika();
-			    } catch (PremasenKapacitetException e) {}
+			if(akcija < verovatnocaCedjenja && !sokovnik.proveriDaLiJePosudaPrazna()) {
+				sokovnik.iscediVoceIzPosude();
 			} else {
-				System.out.println("Ubacivanje voca u posudu...");
-				konstruisiVocku();
+				sokovnik.ubaciVoceUPosudu();
+				sokovnik.prikaziStanjeUPosudi();
+				sokovnik.prikaziTrenutnuTezinuVocaUPosudi();
 			}
 			System.out.println();
 		}
-		
-		System.out.println("Ukupno iscedjeno soka: " + String.format("%.1f", sokovnik.cediljka.getUkupnoSoka()) + " g");
-		
+		sokovnik.getUkupnoIscedjenogSoka();	
 	}
-	
-	public static void konstruisiVocku() {
-		Random rand = new Random();
-		int randomIndex = rand.nextInt(VrstaVoca.values().length) + 1 ;
-		VrstaVoca vrsta = VrstaVoca.izOpcije(randomIndex);
-		Vocka vocka = null;
-		
-		switch(vrsta) {
-			case JABUKA:
-				vocka = new Jabuka("Jabuka", rand.nextInt(201) + 100, rand.nextDouble() < 0.2 );
-				break;
-		}	
-		
-		sokovnik.PosudaZaVoce.dodajVocku(vocka);
-		sokovnik.PosudaZaVoce.prikaziStanjePosude(sokovnik.PosudaZaVoce.getVockeUPosudi());
-		System.out.println("Trenutna tezina voca u posudi je: " + sokovnik.PosudaZaVoce.getTrenutnaTezinaVoca() + " g.");
-		}
-	}
+}

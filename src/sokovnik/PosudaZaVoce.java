@@ -4,17 +4,20 @@ import
 java.util.*;
 
 public class PosudaZaVoce {
-	private final int MINIMALNI_KAPACITET = 2000;
-	private final int MAKSIMALNI_KAPACITET = 5000;
-
-	Random rand = new Random();
-	private int kapacitet = MINIMALNI_KAPACITET + rand.nextInt(MAKSIMALNI_KAPACITET - MINIMALNI_KAPACITET);
+	private final int MINIMALNI_KAPACITET_U_GRAMIMA = 2000;
+	private final int MAKSIMALNI_KAPACITET_U_GRAMIMA = 5000;
+	
+	private Random rand = new Random();
+	private int kapacitet = MINIMALNI_KAPACITET_U_GRAMIMA + rand.nextInt(MAKSIMALNI_KAPACITET_U_GRAMIMA - MINIMALNI_KAPACITET_U_GRAMIMA);
 	private int trenutnaTezinaVoca = 0;
 	private List<Vocka> vockeUPosudi = new ArrayList<>();
 	
-	public void dodajVocku(Vocka vocka) {
+	public void dodajVocku(Vocka vocka, int kapacitetSokovnika) throws PremasenKapacitetException {
+		System.out.println("Ubacivanje voca u posudu...");
 		 if(trenutnaTezinaVoca + vocka.getTezina() > kapacitet) {
 			 System.out.println("Nema mesta za vocku: " + vocka.getNaziv() + " tezine " + vocka.getTezina() + " g. Sledeca akcija...");
+		 } else  if(trenutnaTezinaVoca + vocka.getTezina() > kapacitetSokovnika) {
+			 throw new PremasenKapacitetException();
 		 } else if(!vocka.getTrula()) {
 			vockeUPosudi.add(vocka);
 			trenutnaTezinaVoca += vocka.getTezina();
@@ -23,16 +26,15 @@ public class PosudaZaVoce {
 			System.out.println("Trule vocke se ne mogu ubaciti u posudu!");
 		 }
 	}
-		 
 	
-	public void prikaziStanjePosude(List<Vocka> vocke) {
+	public void prikaziSadrzaj(List<Vocka> vocke) {
 		System.out.println("Trenutno stanje u posudi: ");
 		for(Vocka vocka: vocke) {
-			System.out.println(vocka.getNaziv() + " sorte " + (vocka instanceof Jabuka ? ((Jabuka) vocka).getSorta() : "N/A") + " od " + vocka.getTezina() + " grama.");
+			System.out.println(vocka.getNaziv() + " sorte " + ((Jabuka) vocka).getSorta()  + " od " + vocka.getTezina() + " grama.");
 		}
 	}
 	
-	public List<Vocka> getVockeUPosudi() {
+	public List<Vocka> getVocke() {
 		return vockeUPosudi;
 	}
 	
@@ -44,9 +46,25 @@ public class PosudaZaVoce {
 		return kapacitet;
 	}
 	
-	public void isprazniPosudu() {
-		vockeUPosudi.clear();
+	public int getBrojVockiUPosudi() {
+		return vockeUPosudi.size();
+	}
+	
+	public void setTrenutnaTezinaJeNula() {
 		trenutnaTezinaVoca = 0;
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
