@@ -26,7 +26,7 @@ package sokovnik;
 import
 java.util.*;
 
-class Vocka {
+public class Vocka {
 	private String naziv;
 	private int tezina;
 	private boolean trula;
